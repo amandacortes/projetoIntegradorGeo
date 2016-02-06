@@ -34,7 +34,7 @@
                               <tr role="row" class="odd" align="center">
                                     <td><i class="glyphicon glyphicon-user" ></i></td>
                                     <td class="sorting_1"><?=$usuario['id']?></td>
-                                    <td><?=$usuario['id_patente']?></td>
+                                    <td><?=$usuario['patente']?></td>
                                     <td><?=$usuario['rg']?></td>
                                     <td><?=$usuario['nome']?></td>
                                     <td><?=$usuario['email']?></td>
@@ -88,8 +88,8 @@ function buscarUsuario(idUsuario){
     url: 'Controller/controllerUsuario.php',
     type: 'POST',
     dataType: 'json',
-    data: {idUsuario:idUsuario,
-         action:'buscar'},
+    data: { idUsuario:idUsuario,
+            action:'buscar'},
     success: function(retorno){
       $('#action').val('alterar');
       $('#idUsuario').val(retorno.idUsuario);

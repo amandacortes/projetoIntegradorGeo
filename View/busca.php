@@ -82,14 +82,13 @@ include 'menu.php';
   	</div>
 </div>
 
-<div class="modal-dialog" style="position: absolute; width: 235px; right: 5%; top: 75%; bottom: 90%">
+<!-- <div class="modal-dialog" style="position: absolute; width: 235px; right: 5%; top: 75%; bottom: 90%">
     <div class="modal-content">    
       	<div class="modal-footer">		
-			<button type="button" class="btn btn-danger"><i class="fa fa-road"></i> Rotas de fuga</button>
 			<button style="margin-left: 8%; float: right; width: 20%"  type="button" class="btn btn-success" id="Salvar" value="Salvar" onclick="salvaMapa()"><i class="fa fa-floppy-o fa-lg"></i></button>
       	</div>
     </div>
-</div>
+</div> -->
 
 <script>
 
@@ -231,7 +230,7 @@ function update() {
     return false;
 }
 
-function salvaMapa(){
+/*function salvaMapa(){
 	//document.getElementById('Salvar').addEventListener('click', window.print());
 	var id = $('#id').val();
 
@@ -245,7 +244,7 @@ function salvaMapa(){
 
 		}
 	})
-}
+}*/
 
 google.maps.event.addDomListener(window, 'load', initialize);</script>		
 

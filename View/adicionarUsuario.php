@@ -51,11 +51,8 @@
                                     echo "<option value='".$row['id']."'>".$row['nome']."</option>";
                                 }
                            ?>
-                          </select>
-                    
+                          </select>         
                 </div>
-
-
                 <div class="col-md-3">
                      <label>UF:</label>
                     <select class="form-control" name="estado" id="estado">
@@ -114,7 +111,7 @@
                     <input type="checkbox"  class="" <?=$statusAdministrador?> name="administrador" id="administrador" value="1" />
                     <br>
                     <label>Ativo:</label>
-                     <input type="checkbox" class="" <?=$statusAtivo?> name="ativo" id="ativo" value="1" />
+                     <input type="checkbox" class="" <?=$statusAtivo?> name="ativo" id="ativo" value="SIM" />
                 </div>
             </div>
         <!--    ###########################################  -->
@@ -126,10 +123,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="col-md-3">
-                        <button type="button" class="btn btn-primary btn-block" onclick="location.href='usuarios.php'">Cancelar</button>    
+                        <button type="button" class="btn btn-primary btn-block" onclick="location.href='../Controller/controllerUsuario.php'">Cancelar</button>    
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary btn-block">Salvar</i></button>    
+                        <button type="submit" class="btn btn-primary btn-block" onclick="salvarUsuario()">Salvar</i></button>    
                     </div>                    
                 </div>
             </div>
@@ -139,7 +136,34 @@
 
 </body>
 
+<script type="text/javascript">
+    
+    function salvarUsuario () {
+        $.ajax({
+            url: '../Controller/controllerUsuario.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { idUsuario = null, 
+                    nome = nome, 
+                    rg = rg, 
+                    patente = patente, 
+                    instituicao = instituicao, 
+                    estado = estado, 
+                    email = email, 
+                    senha = senha, 
+                    administrador = administrador, 
+                    ativo = ativo
+        })
+        success function(retorno) {
+            if (retorno = true){
+                alert("Dados salvos com sucesso!");
+            } else {
+                alert("Falha ao salvar dados.");
+            }
+        }
+    }
 
+</script>
 
 <?php
     include 'inferior.php';

@@ -10,40 +10,48 @@
 
 			if($idUsuario){
 
-					$sqlUpdate = "UPDATE USUARIO SET
-								nome = '{$nome}',
-								rg = '{$rg}',
-								id_patente = {$patente},
-								id_instituicao = {$instituicao},
-								id_estado = '{$estado}',
-								email = '{$email}',
-								senha = '{$senha}',
-								permissao = {$administrador},
-								ativo= {$ativo} where id = {$idUsuario}";
-					mysql_query($sqlUpdate);
+				$sqlUpdate = "	UPDATE 
+									USUARIO 
+								SET
+									nome = '{$nome}',
+									rg = '{$rg}',
+									idPatente = {$patente},
+									idInstituicao = {$instituicao},
+									idEstado = '{$estado}',
+									email = '{$email}',
+									senha = '{$senha}',
+									permissao = {$administrador},
+									ativo= {$ativo} 
+								WHERE 
+									id = {$idUsuario}";
+
+				mysql_query($sqlUpdate);
 
 			}else{
-						$sqlInserir = "INSERT INTO usuario(	id_patente, 
-												id_instituicao, 
-												id_estado,
-												rg, 
-												nome, 
-												email, 
-												senha, 
-												permissao, 
-												ativo
-									) VALUES (
-											{$patente},
-											{$instituicao},
-											'{$estado}',
-											'{$rg}',
-											'{$nome}',
-											'{$email}',
-											'{$senha}',
-											{$administrador},
-											{$ativo} )";
-						mysql_query($sqlInserir);
+				$sqlInserir = "INSERT INTO usuario(	
+									idPatente, 
+									idInstituicao, 
+									idEstado,
+									rg, 
+									nome, 
+									email, 
+									senha, 
+									permissao, 
+									ativo
+							) VALUES (
+									{$patente},
+									{$instituicao},
+									'{$estado}',
+									'{$rg}',
+									'{$nome}',
+									'{$email}',
+									'{$senha}',
+									{$administrador},
+									{$ativo} )";
+
+				mysql_query($sqlInserir);
 			}
+
 			return true;
 		}
 
@@ -78,28 +86,32 @@
 
 		//valida a senha e o rg inserido pelo usuario no momento do login
 		public function validarLogin($rg, $senha){
-			$sqlBuscaSelect = "SELECT nome FROM usuario WHERE senha = $senha and rg = $rg";
+			$sqlBuscaSelect = "SELECT id, nome FROM usuario WHERE senha = '$senha' and rg = '$rg'";
+
 			$resultadoSelect = mysql_query($sqlBuscaSelect);
 
-			$numeroDeLinhasRetornadas = mysql_affected_rows();
+			$numeroDeLinhasRetornadas = mysql_num_rows($resultadoSelect);
 
 			if ($numeroDeLinhasRetornadas > 0) {
-				$retornaNome = mysql_fetch_assoc($resultadoSelect);
+				$retornaUsuario = mysql_fetch_assoc($resultadoSelect);
 
 				session_start();
-				$_SESSION['nomeUsuario'] = $retornaNome['nome'];
+				$_SESSION['idUsuario']	 = $retornaUsuario['id'];
+				$_SESSION['nomeUsuario'] = $retornaUsuario['nome'];
 
-				return true;
+				$retorno = true;
 			} else {
-				return false;
+				$retorno = false;
 			}
+
+			return $retorno;
 		}
 
 		public function listar(){
 
 			$sqlListaDeUsuarios = "SELECT u.id as id, u.nome as nome, u.email as email, u.ativo as ativo, p.nome as patente 
 									FROM usuario u 
-									INNER JOIN patente p ON (u.id_patente = p.id) 
+									INNER JOIN patente p ON (u.idPatente = p.id) 
 									ORDER BY nome";
 			
 			$resultado = mysql_query($sqlListaDeUsuarios);
@@ -114,21 +126,23 @@
 		}
 
 		public function excluirUsuario($idUsuario){
-			$sqlExcluir = "DELETE FROM usuario WHERE id = {$idUsuario}";
+			//O usuário não poderá ser excluído fisicamente do banco, portando será apenas setado como 'inativo' (0);
+			$sqlExcluir = "UPDATE usuario SET ativo = 'NAO' WHERE id = {$idUsuario}";
 			$resultado = mysql_query($sqlExcluir);
 		}
 
 		public function listarUsuarios(){
-			$sqlBuscaUsuarios = "SELECT id, 
-										rg, 
-										id_patente, 
-										id_instituicao, 
-										nome,
-										email, 
-										senha, 
-										permissao, 
-										ativo 
-									from projetointegradorgeo.usuario";
+			$sqlBuscaUsuarios = "	SELECT 
+										u.id, 
+									    p.nome AS patente,
+										u.rg, 
+										u.nome,
+										u.email,  
+										u.ativo
+									FROM 
+										usuario u
+									    INNER JOIN patente p ON u.idPatente = p.id";
+
 			$resultadoBuscaUsuarios = mysql_query($sqlBuscaUsuarios);
 
 			$usuarios = array();
@@ -175,22 +189,26 @@
 			while ($row = mysql_fetch_assoc($resultado)) {
 				$retorno[] = $row;
 			}
-
 			return $retorno;
 		}	
 	
 
 		public function recuperaUsuario($idUsuario){
-			$sqlBuscaUsuarios = "SELECT id, 
+			$sqlBuscaUsuarios = "	SELECT 	
+										id, 
 										rg, 
-										id_patente, 
-										id_instituicao, 
+										idPatente, 
+										idInstituicao, 
 										nome,
 										email, 
 										senha, 
 										permissao, 
 										ativo 
-									from projetointegradorgeo.usuario where id = {$idUsuario}";
+									FROM 
+										usuario 
+									WHERE 
+										id = {$idUsuario}";
+
 			$resultado = mysql_query($sqlBuscaUsuarios);
 			$dados = mysql_fetch_assoc($resultado);
 			return $dados;
