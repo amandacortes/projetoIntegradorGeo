@@ -1,0 +1,9 @@
+INSERT INTO instituicao VALUES (1, 1, 'Polícia Militar');
+INSERT INTO instituicao VALUES (2, 1, 'Polícia Federal');
+INSERT INTO instituicao VALUES (3, 1, 'Polícia Civil');
+INSERT INTO instituicao VALUES (4, 1, 'Polícia Rodoviária Federal');
+INSERT INTO instituicao VALUES (5, 1, 'Polícia Ferroviária Federal');
+INSERT INTO instituicao VALUES (6, 1, 'Polícia Cientifica');
+INSERT INTO instituicao VALUES (7, 1, 'Força Nacional de Segurança Pública');
+INSERT INTO instituicao VALUES (8, 1, 'Polícia das Forças Armadas');
+INSERT INTO instituicao VALUES (9, 1, 'Polícia Legislativa Federal');
