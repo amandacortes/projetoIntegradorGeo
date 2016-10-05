@@ -12,5 +12,6 @@
 
 <!-- Fim código HTML -->
 <?php 
-    include('inferior.php');
+    // fechamento do html
+    include("inferior.php");
 ?>
