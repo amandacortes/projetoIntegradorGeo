@@ -3,7 +3,7 @@
 	error_reporting(E_ALL & ~E_DEPRECATED);
 
 	$servidor = 'localhost';
-	$banco = 'projetointegradorgeo';
+	$banco = 'geolocalizacao';
 	$usuario = 'root';
 	$senha = '';
 	$link = mysql_connect($servidor,$usuario,$senha);

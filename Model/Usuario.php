@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	include('conexao.php');
 
@@ -9,53 +9,52 @@
 		public function salvarUsuario($idUsuario, $nome, $rg, $patente, $instituicao, $estado, $email, $senha, $administrador, $ativo){
 
 			if($idUsuario){
-
-					$sqlUpdate = "UPDATE USUARIO SET
-								nome = '{$nome}',
-								rg = '{$rg}',
-								id_patente = {$patente},
-								id_instituicao = {$instituicao},
-								id_estado = '{$estado}',
-								email = '{$email}',
-								senha = '{$senha}',
-								permissao = {$administrador},
-								ativo= {$ativo} where id = {$idUsuario}";
+					$sqlUpdate = "	UPDATE USUARIO SET
+									nome = '{$nome}',
+									rg = '{$rg}',
+									id_patente = {$patente},
+									id_instituicao = {$instituicao},
+									id_estado = '{$estado}',
+									email = '{$email}',
+									senha = '{$senha}',
+									permissao = {$administrador},
+									ativo= {$ativo} where id = {$idUsuario}";
 					mysql_query($sqlUpdate);
-
 			}else{
-						$sqlInserir = "INSERT INTO usuario(	id_patente, 
-												id_instituicao, 
-												id_estado,
-												rg, 
-												nome, 
-												email, 
-												senha, 
-												permissao, 
-												ativo
-									) VALUES (
-											{$patente},
-											{$instituicao},
-											'{$estado}',
-											'{$rg}',
-											'{$nome}',
-											'{$email}',
-											'{$senha}',
-											{$administrador},
-											{$ativo} )";
-						mysql_query($sqlInserir);
+				$sqlInserir = "INSERT INTO usuario(
+									id_patente,
+									id_instituicao,
+									id_estado,
+									rg,
+									nome,
+									email,
+									senha,
+									permissao,
+									ativo
+								) VALUES (
+									{$patente},
+									{$instituicao},
+									'{$estado}',
+									'{$rg}',
+									'{$nome}',
+									'{$email}',
+									'{$senha}',
+									{$administrador},
+									{$ativo} )";
+				mysql_query($sqlInserir);
 			}
 			return true;
 		}
 
 		public function editar($rg, $id_instituicao, $id_estado, $nome, $email, $permissao, $ativo, $senha){
 
-			$sqlUpdate = "UPDATE usuario SET 
-								id_instituicao 	= $id_instituicao, 
-								id_estado		= $id_estado, 
-								nome 			= 'nome', 
-								email 			= '$email', 
-								permissao 		= $permissao, 
-								ativo 			= $ativo 
+			$sqlUpdate = "UPDATE usuario SET
+								id_instituicao 	= $id_instituicao,
+								id_estado		= $id_estado,
+								nome 			= 'nome',
+								email 			= '$email',
+								permissao 		= $permissao,
+								ativo 			= $ativo
 						  WHERE id 				= $id";
 
 			mysql_query($sqlUpdate);
@@ -97,13 +96,13 @@
 
 		public function listar(){
 
-			$sqlListaDeUsuarios = "SELECT u.id as id, u.nome as nome, u.email as email, u.ativo as ativo, p.nome as patente 
-									FROM usuario u 
-									INNER JOIN patente p ON (u.id_patente = p.id) 
+			$sqlListaDeUsuarios = "SELECT u.id as id, u.nome as nome, u.email as email, u.ativo as ativo, p.nome as patente
+									FROM usuario u
+									INNER JOIN patente p ON (u.id_patente = p.id)
 									ORDER BY nome";
-			
+
 			$resultado = mysql_query($sqlListaDeUsuarios);
-		
+
 			return $resultado;
 		}
 
@@ -119,15 +118,15 @@
 		}
 
 		public function listarUsuarios(){
-			$sqlBuscaUsuarios = "SELECT id, 
-										rg, 
-										id_patente, 
-										id_instituicao, 
+			$sqlBuscaUsuarios = "SELECT id,
+										rg,
+										id_patente,
+										id_instituicao,
 										nome,
-										email, 
-										senha, 
-										permissao, 
-										ativo 
+										email,
+										senha,
+										permissao,
+										ativo
 									from projetointegradorgeo.usuario";
 			$resultadoBuscaUsuarios = mysql_query($sqlBuscaUsuarios);
 
@@ -137,7 +136,7 @@
 				$usuarios[] = $row;
 			}
 
-			return $usuarios;		
+			return $usuarios;
 		}
 
 		public function listaInstituicao(){
@@ -152,7 +151,7 @@
 
 			return $retorno;
 		}
-		
+
 		public function listaPatente(){
 			$buscaPatente = "select id, nome from patente";
 			$resultado =mysql_query($buscaPatente);
@@ -177,19 +176,19 @@
 			}
 
 			return $retorno;
-		}	
-	
+		}
+
 
 		public function recuperaUsuario($idUsuario){
-			$sqlBuscaUsuarios = "SELECT id, 
-										rg, 
-										id_patente, 
-										id_instituicao, 
+			$sqlBuscaUsuarios = "SELECT id,
+										rg,
+										id_patente,
+										id_instituicao,
 										nome,
-										email, 
-										senha, 
-										permissao, 
-										ativo 
+										email,
+										senha,
+										permissao,
+										ativo
 									from projetointegradorgeo.usuario where id = {$idUsuario}";
 			$resultado = mysql_query($sqlBuscaUsuarios);
 			$dados = mysql_fetch_assoc($resultado);

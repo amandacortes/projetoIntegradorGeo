@@ -7,8 +7,8 @@
                 <div class="thumbnail col-md-12">
                     <div class="col-md-6">
                             <h4>1. Imagem de cabeçalho</h4>
-                            <input type="file" name="arquivoCabecalho" id="arquivoCabecalho" >                       
-                    </div>                
+                            <input type="file" name="arquivoCabecalho" id="arquivoCabecalho" >
+                    </div>
                 </div>
             </div>
 
@@ -17,8 +17,8 @@
                 <div class="thumbnail col-md-12">
                     <div class="col-md-12">
                             <h4>2. Título do Relatório</h4>
-                            <input type="text" class="form-control" name="tituloRelatorio" id="tituloRelatorio" placeholder="Título"/>                    
-                    </div>                
+                            <input type="text" class="form-control" name="tituloRelatorio" id="tituloRelatorio" placeholder="Título"/>
+                    </div>
                 </div>
             </div>
 
@@ -31,13 +31,13 @@
                             <div class="thumbnail col-md-12">
                                 <h6>#arquivo1</h6>
                                 <input value="1" id="arquivo1" name="arquivo1" type="hidden" class="">
-                                <input type="file" id="arquivo1" name="arquivo1" style="margin-bottom:1%;">                       
-                                <textarea style="margin-bottom: 2%" id="txtArquivo1" name="txtArquivo1" class="form-control" rows="6"></textarea>                  
-                            </div>  
+                                <input type="file" id="arquivo1" name="arquivo1" style="margin-bottom:1%;">
+                                <textarea style="margin-bottom: 2%" id="txtArquivo1" name="txtArquivo1" class="form-control" rows="6"></textarea>
+                            </div>
                             <div class="maisArquivos" id="maisArquivos" name="maisArquivos"></div>
                             <button type="button" onclick="maisArquivos()">+</button>
 
-                    </div>                
+                    </div>
                 </div>
             </div>
         <div class="row" style="margin-top: 2%">
@@ -49,13 +49,13 @@
                 </div>
             </div>
         </div>
-        </form>	
-		
+        </form>
+
         </div>
-    
+
 
         <script type="text/javascript">
-            
+
             function maisArquivos(){
                 var numero = parseFloat($('#numeroDeArquivos').val());
                 numero = numero+1;
@@ -68,11 +68,11 @@
                 $('#maisArquivos').append(scriptDeArquivo);
             }
         </script>
-            
+
     </body>
 </html>
-	
-	
-	
-	
-	
+
+
+
+
+

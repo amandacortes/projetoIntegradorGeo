@@ -11,16 +11,16 @@
         <link rel="stylesheet" href="../Libs/bootflat/css/bootflat.css">
         <link rel="stylesheet" href="../Libs/css/logo-nav.css">
         <link rel="stylesheet" href="../Libs/css/font-awesome.min.css">
-            
+
         <style type="text/css" media="screen">
             #login {
                 width:500px; /* Tamanho da Largura da Div */
                 height:200px; /* Tamanho da Altura da Div */
-                position:absolute; 
-                top:25%; 
+                position:absolute;
+                top:25%;
                 margin-top:-100px; /* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
                 left:50%;
-                margin-left:-250px;                
+                margin-left:-250px;
             }
         </style>
     </head>
@@ -54,13 +54,13 @@
                     url: "../Controller/controllerUsuario.php",
                     type: 'POST',
                     dataType: 'json',
-                    data: { email:email, 
+                    data: { email:email,
                             action:'enviarEmailSolicitacaoDeSenha'},
                     success: function(msg){
                         if(msg == true){
                             alert('E-mail enviado com sucesso!');
                         } else {
-                            alert('E-mail não cadastrado em nosso sistema. Verifique com o administrador do sistema.'); 
+                            alert('E-mail não cadastrado em nosso sistema. Verifique com o administrador do sistema.');
                         }
                     },
                     error: function(msg){

@@ -1,4 +1,4 @@
-<?php 
+<?php
 		echo "<pre>".print_r($_POST, true)."</pre>";
 		echo "<pre>".print_r($_FILES, true)."</pre>";
 		//exit;
@@ -11,7 +11,7 @@
  		<title><?=$_POST['tituloRelatorio']?></title>
  </head>
  <body>
- 	
+
  		<H1><?=$_POST['tituloRelatorio']?></H1>
  </body>
  </html>

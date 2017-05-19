@@ -28,7 +28,7 @@ switch ($action) {
 		$dadosUsuario  = $usuario->recuperaUsuario($_REQUEST['idUsuario']);
 
 		include "../View/adicionarUsuario.php";
-			
+
 		break;
 
 	case 'salvarUsuario':
@@ -42,7 +42,7 @@ switch ($action) {
 			$senha = $_REQUEST['senha'];
 			$administrador =  isset($_REQUEST['administrador']) ? $_REQUEST['administrador'] : 0;
 			$ativo		= isset($_REQUEST['ativo']) ? $_REQUEST['ativo'] : 0;
-				
+
 
 			$retorno = $usuario->salvarUsuario($idUsuario, $nome, $rg, $patente, $instituicao, $estado, $email, $senha, $administrador, $ativo);
 
@@ -50,7 +50,7 @@ switch ($action) {
 			include ("../View/usuarios.php");
 
 			exit;
-			
+
 	break;
 
 	case 'excluirUsuario':
@@ -67,13 +67,13 @@ switch ($action) {
 			$retorno = $usuario->validarLogin($rg, $senha);
 
 			echo json_encode($retorno);
-			
+
 		break;
 
 	case 'listarUsuarios':
 		# code...
 		break;
-	
+
 	default:
 		$listaDeUsuario = $usuario->listarUsuarios();
 		require "../View/usuarios.php";

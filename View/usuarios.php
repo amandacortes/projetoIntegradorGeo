@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                           foreach ($listaDeUsuario as $usuario) {
                             $idUsuario = $usuario['id'];
                             ?>
@@ -106,18 +106,18 @@ function buscarUsuario(idUsuario){
         $('#tabelaDeUsuarios').DataTable(
             {
                "aaSorting": [[ 2, "asc" ]],
-               "oLanguage": { 
-                   "sLengthMenu": "Mostrar _MENU_ itens por página", 
+               "oLanguage": {
+                   "sLengthMenu": "Mostrar _MENU_ itens por página",
                    "sZeroRecords": "<i>Não há itens neste modo de exibição.</i>",
-                   "sInfo": "_TOTAL_ itens encontrados (exibindo de _START_ a _END_)", 
-                   "sInfoEmpty": "Não há itens para o filtro selecionado.", 
-                   "sInfoFiltered": " - total de _MAX_ registros", 
+                   "sInfo": "_TOTAL_ itens encontrados (exibindo de _START_ a _END_)",
+                   "sInfoEmpty": "Não há itens para o filtro selecionado.",
+                   "sInfoFiltered": " - total de _MAX_ registros",
                    "sSearch": "<b>Filtrar: </b>",
-                   "oPaginate": { 
-                       "sFirst": "Início", 
-                       "sPrevious": "&lt;", 
-                       "sNext": "&gt;", 
-                       "sLast": "Último" 
+                   "oPaginate": {
+                       "sFirst": "Início",
+                       "sPrevious": "&lt;",
+                       "sNext": "&gt;",
+                       "sLast": "Último"
                   }
               },
               "iDisplayLength" : 10,
